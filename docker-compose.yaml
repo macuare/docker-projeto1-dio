@@ -1,0 +1,24 @@
+networks:
+ red-dio-macuare:
+  driver: bridge
+  
+services:
+ web-server:
+  image: httpd:latest
+  container_name: servicio-apache
+  ports:
+   - "8080:80"
+  deploy:
+   resources:
+    limits:
+     cpus: '0.50'
+     memory: 256M
+    reservations:
+     cpus: '0.25'
+     memory: 128M
+  cpuset: '1'
+  restart: always
+  volumes:
+   - C:\Users\andya\OneDrive\Documents\DockerComandos\bootstrap-5.0.2-examples\bootstrap-5.0.2-examples\sign-in:/usr/local/apache2/htdocs
+  networks:
+   - red-dio-macuare
